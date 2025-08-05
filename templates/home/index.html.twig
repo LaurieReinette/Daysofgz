@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log filenames to date{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center">
+
+                <p class="lead mt-4 mb-4">
+                    This tool helps you quickly find the date corresponding to each log file name.
+                    <br>
+                    Use this table to easily match log files with their exact dates.
+                </p>
+
+                <h1 class="mb-4">📄Log Files ➜ Corresponding Dates</h1>
+
+                <table class="table table-bordered table-hover">
+                    <thead class="table-dark">
+                    <tr>
+                        <th class="text-center">Log File</th>
+                        <th class="text-center">Date</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for log in logs %}
+                        <tr>
+                            <td class="text-center">{{ log.name }}</td>
+                            <td class="text-center">{{ log.date }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+    <div class="text-center my-4">
+        <a href="https://paypal.me/lauriereinette" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            ☕ By me a coffee
+        </a>
+    </div>
+{% endblock %}
