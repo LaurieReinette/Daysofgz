@@ -31,14 +31,26 @@ final class HomeController extends AbstractController
 
         $today = new \DateTimeImmutable('today');
         $mapped = [];
+        $weekdayNames = [
+            1 => 'Monday',
+            2 => 'Tuesday',
+            3 => 'Wednesday',
+            4 => 'Thursday',
+            5 => 'Friday',
+            6 => 'Saturday',
+            7 => 'Sunday',
+        ];
 
         foreach ($logFiles as $file) {
             preg_match('/access\.log(?:\.([0-9]+))?/', $file, $matches);
             $dayOffset = isset($matches[1]) ? (int)$matches[1] : 0;
-            $date = $today->modify("-$dayOffset days")->format('d/m/Y');
+            $dateObject = $today->modify("-$dayOffset days");
+            $date = $dateObject->format('d/m/Y');
+            $weekday = $weekdayNames[(int)$dateObject->format('N')];
             $mapped[] = [
                 'name' => $file,
                 'date' => $date,
+                'weekday' => $weekday,
             ];
         }
 

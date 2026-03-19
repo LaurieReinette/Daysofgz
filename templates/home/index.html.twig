@@ -20,6 +20,7 @@
                     <tr>
                         <th class="text-center">Log File</th>
                         <th class="text-center">Date</th>
+                        <th class="text-center">Day</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -27,6 +28,7 @@
                         <tr>
                             <td class="text-center">{{ log.name }}</td>
                             <td class="text-center">{{ log.date }}</td>
+                            <td class="text-center">{{ log.weekday }}</td>
                         </tr>
                     {% endfor %}
                     </tbody>
