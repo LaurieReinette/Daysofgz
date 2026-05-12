@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
@@ -10,6 +11,19 @@ final class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
     public function index(): Response
+    {
+        return $this->render('home/index.html.twig', [
+            'logs' => $this->buildLogs(),
+        ]);
+    }
+
+    #[Route('/json', name: 'app_home_json')]
+    public function json(): JsonResponse
+    {
+        return $this->json($this->buildLogs());
+    }
+
+    private function buildLogs(): array
     {
         $logFiles = [
             'access.log',
@@ -54,8 +68,6 @@ final class HomeController extends AbstractController
             ];
         }
 
-        return $this->render('home/index.html.twig', [
-            'logs' => $mapped,
-        ]);
+        return $mapped;
     }
 }
