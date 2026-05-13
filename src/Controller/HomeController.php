@@ -18,7 +18,7 @@ final class HomeController extends AbstractController
     }
 
     #[Route('/json', name: 'app_home_json')]
-    public function json(): JsonResponse
+    public function jsonResults(): JsonResponse
     {
         return $this->json($this->buildLogs());
     }
