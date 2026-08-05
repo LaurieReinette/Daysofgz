@@ -27,7 +27,8 @@
                     <tr>
                         <th class="text-center">Log File</th>
                         <th class="text-center">Date</th>
-                        <th class="text-center">Day</th>
+                        <th class="text-center">Day (EN)</th>
+                        <th class="text-center">Jour (FR)</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -36,6 +37,7 @@
                             <td class="text-center">{{ log.name }}</td>
                             <td class="text-center">{{ log.date }}</td>
                             <td class="text-center">{{ log.weekday }}</td>
+                            <td class="text-center">{{ log.weekdayFr }}</td>
                         </tr>
                     {% endfor %}
                     </tbody>
