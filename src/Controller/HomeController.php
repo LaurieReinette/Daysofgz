@@ -45,7 +45,7 @@ final class HomeController extends AbstractController
 
         $today = new \DateTimeImmutable('today');
         $mapped = [];
-        $weekdayNames = [
+        $weekdayNamesEn = [
             1 => 'Monday',
             2 => 'Tuesday',
             3 => 'Wednesday',
@@ -54,17 +54,27 @@ final class HomeController extends AbstractController
             6 => 'Saturday',
             7 => 'Sunday',
         ];
+        $weekdayNamesFr = [
+            1 => 'Lundi',
+            2 => 'Mardi',
+            3 => 'Mercredi',
+            4 => 'Jeudi',
+            5 => 'Vendredi',
+            6 => 'Samedi',
+            7 => 'Dimanche',
+        ];
 
         foreach ($logFiles as $file) {
             preg_match('/access\.log(?:\.([0-9]+))?/', $file, $matches);
             $dayOffset = isset($matches[1]) ? (int)$matches[1] : 0;
             $dateObject = $today->modify("-$dayOffset days");
             $date = $dateObject->format('d/m/Y');
-            $weekday = $weekdayNames[(int)$dateObject->format('N')];
+            $dayNumber = (int)$dateObject->format('N');
             $mapped[] = [
                 'name' => $file,
                 'date' => $date,
-                'weekday' => $weekday,
+                'weekday' => $weekdayNamesEn[$dayNumber],
+                'weekdayFr' => $weekdayNamesFr[$dayNumber],
             ];
         }
 
